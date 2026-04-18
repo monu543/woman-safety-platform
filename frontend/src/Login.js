@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const [data, setData] = useState({
+  const[data, setData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleChange = (e) => {
@@ -17,48 +17,50 @@ export default function Login() {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", data);
-      
-      if (res.data.success) {
-      alert("Login successful");
+      const response = await axios.post('http://localhost:5000/api/auth/login', data);
+    
+      if (response.data.success) {
+        alert('Login successful');
 
-      // Store token and user info in localStorage
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+        // Store the token in localStorage
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
 
-      navigate("/dashboard"); 
-      console.log(resres.data); // Debugging
-    } else{
-      alert("Login failed");
+        navigate('/dashboard'); //Debugging: Log the response data
+      } else {
+        alert('Login failed: ' + response.data.message);
+      }
+    } catch (error) {
+      alert("server error");
+      console.error('Login error:', error);
     }
-  }   catch (error) {
-    alert("server error");
-    console.error(error); 
-  }
   };
 
   return (
     <div className="container">
-      <form onSubmit={login} className="box">
-      <h2>Login</h2>
+      <form onSubmit={login} className='box'>
+       <h2>Login</h2>
 
-        <input
+        <input 
           type="email"
-          name="email"
-          placeholder="Email"
-          value={data.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
+          name="email" 
+          autoComplete="emai"
+          placeholder="Email" 
+          value={data.email} 
+          onChange={handleChange} 
+          required 
+          />
+
+        <input 
+          type="password" 
           name="password"
+          autoComplete="current-password"
           placeholder="Password"
           value={data.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Login</button>
+          onChange={handleChange} 
+          required 
+          />
+          <button type="submit">Login</button>
       </form>
     </div>
   );

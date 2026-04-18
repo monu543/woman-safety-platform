@@ -16,7 +16,7 @@ export default function Register() {
       //.env file usage for API URL
       const res = await axios.post(
         "http://localhost:5000/api/auth/register",
-        { name, email, password }
+        data
       );
 
       alert(res.data.message || "Registered Successfully ✅");
