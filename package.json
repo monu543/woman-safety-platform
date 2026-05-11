@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "v22.14.0"
+  },
   "name": "women-safety-platform",
   "version": "1.0.0",
   "scripts": {
@@ -7,6 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "mongodb": "^7.2.0"
   }
 }
