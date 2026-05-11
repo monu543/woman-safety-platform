@@ -47,24 +47,30 @@ router.post("/register", async (req, res) => {
 
 // Login
 router.post("/login", async (req, res) => {
+  console.log("BODY:", req.body); //Debugging: Check incoming data
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user)
+    console.log("USER:", user); //Debugging: Check if user is found
+    if (!user) {
       return res.status(400).json({ 
         success: false,
         message: "Invalid email or password" 
       });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
+    console.log("MATCH:", isMatch); //true/false?
+    if (!isMatch) {
       return res.status(400).json({ 
         success: false,
-        message: "Invalid email or password" });
-      
+        message: "Invalid email or password" 
+      });
+    }
+
     const token = jwt.sign(
-      { id: user._id, role: user.role },
+      { id: user._id, },
        process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
@@ -73,8 +79,10 @@ router.post("/login", async (req, res) => {
       success: true,
       token, 
       user 
-    });
+    }); 
+
   } catch (err) {
+    console.log("Error:", err); //Debugging
     res.status(500).json({ 
       success: false,
       message: "Server error" });

@@ -23,6 +23,10 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
+router.post("/login", (req, res) => {
+  res.send("Login API working");
+});
+
 // 📜 Get All Alerts
 router.get("/", authMiddleware, async (req, res) => {
   try {
