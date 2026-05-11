@@ -9,7 +9,12 @@ const alertRoutes = require("./routes/alertRoutes");
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://woman-safety-platform-riee.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Connect Database

@@ -18,9 +18,9 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-  "https://woman-safety-platform.onrender.com/api/auth/login",
-  data
-);
+     "https://woman-safety-platform.onrender.com/api/auth/login",
+      data
+      );
     
       if (response.data.success) {
         alert('Login successful');
