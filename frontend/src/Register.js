@@ -15,9 +15,9 @@ export default function Register() {
     try {
       //.env file usage for API URL
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        data
-      );
+        "https://woman-safety-platform.onrender.com/api/auth/register",
+     data
+    );
 
       alert(res.data.message || "Registered Successfully ✅");
       navigate("/");//LOGIN PAGE
