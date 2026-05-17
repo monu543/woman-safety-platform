@@ -17,7 +17,7 @@ export default function Dashboard() {
   const fetchAlerts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/alerts",
+        "http://woman-safety-platform.onrender.com/api/alerts",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -35,7 +35,7 @@ export default function Dashboard() {
 
   const deleteAlert = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/alerts/${id}`,
+      `http://woman-safety-platform.onrender.com/api/alerts/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -56,7 +56,7 @@ export default function Dashboard() {
     async (pos) => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/alerts",
+          "http://woman-safety-platform.onrender.com/api/alerts",
           {
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
@@ -95,7 +95,7 @@ export default function Dashboard() {
   // Accept Alert (Volunteer)
   const acceptAlert = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/alerts/accept/${id}`,
+      `http://woman-safety-platform.onrender.com/api/alerts/accept/${id}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -107,7 +107,7 @@ export default function Dashboard() {
   // Resolve Alert
   const resolveAlert = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/alerts/resolve/${id}`,
+      `http://woman-safety-platform.onrender.com/api/alerts/resolve/${id}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
